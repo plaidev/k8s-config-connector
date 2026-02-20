@@ -59,6 +59,8 @@ func MeanReconcileReenqueuePeriod(gvk schema.GroupVersionKind,
 		return v1beta1.IAMPolicyMemberReconcileInterval
 	case "IAMAuditConfig":
 		return v1beta1.IAMAuditConfigReconcileInterval
+	case "BigtableAuthorizedView":
+		return k8s.LongReconcileReenqueuePeriod
 	}
 	// If no GVK specific reconcile interval configured, return default value.
 	return k8s.MeanReconcileReenqueuePeriod
