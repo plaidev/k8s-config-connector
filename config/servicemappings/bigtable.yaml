@@ -46,6 +46,37 @@ spec:
           version: v1beta1
           group: bigtable.cnrm.cloud.google.com
         parent: true
+  - name: google_bigtable_authorized_view
+    kind: BigtableAuthorizedView
+    idTemplate: "projects/{{project}}/instances/{{instance_name}}/tables/{{table_name}}/authorizedViews/{{name}}"
+    idTemplateCanBeUsedToMatchResourceName: true
+    resourceAvailableInAssetInventory: true
+    directives:
+      - ignore_warnings
+    metadataMapping:
+      name: authorized_view_id
+    resourceID:
+      targetField: authorized_view_id
+    containers:
+      - type: project
+        tfField: project
+    resourceReferences:
+      - tfField: table
+        description: |-
+          The name of the table.
+        key: tableRef
+        gvk:
+          kind: BigtableTable
+          version: v1beta1
+          group: bigtable.cnrm.cloud.google.com
+      - tfField: instance_name
+        description: |-
+          The name of the Bigtable instance.
+        key: instanceRef
+        gvk:
+          kind: BigtableInstance
+          version: v1beta1
+          group: bigtable.cnrm.cloud.google.com
   - name: google_bigtable_gc_policy
     kind: BigtableGCPolicy
     skipImport: true

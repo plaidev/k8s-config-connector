@@ -33,6 +33,7 @@ const (
 	TimeToLeaseExpiration                = 40 * time.Minute
 	TimeToLeaseRenewal                   = 20 * time.Minute
 	MeanReconcileReenqueuePeriod         = 10 * time.Minute
+	LongReconcileReenqueuePeriod         = 12 * time.Hour
 	JitterFactor                         = 2.0
 	UpToDate                             = "UpToDate"
 	UpToDateMessage                      = "The resource is up to date"

@@ -33,6 +33,21 @@ type AuthorizedViewIdentity struct {
 	id     string
 }
 
+func (i *AuthorizedViewIdentity) Parent() *bigtablev1beta1.TableIdentity {
+	return i.parent
+}
+
+func NewAuthorizedViewIdentityFromExternal(e string) (*AuthorizedViewIdentity, error) {
+	actualParent, actualResourceID, err := ParseAuthorizedViewExternal(e)
+	if err != nil {
+		return nil, err
+	}
+	return &AuthorizedViewIdentity{
+		id:     actualResourceID,
+		parent: actualParent,
+	}, nil
+}
+
 func (i *AuthorizedViewIdentity) String() string {
 	return i.parent.String() + "/authorizedViews/" + i.id
 }

@@ -39,7 +39,7 @@ FROM ${GKE_DISTROLESS_IMG} AS final
 WORKDIR /configconnector/
 COPY --from=packager /configconnector /configconnector
 ENV PATH="/configconnector/:${PATH}"
-
+ENV KCC_USE_DIRECT_RECONCILERS="BigQueryDataset,CloudIdentityGroup,BigtableAuthorizedView"
 # Set the user to user with UID 1000 for subsequent commands
 USER 1000
 ENTRYPOINT ["./manager"]
