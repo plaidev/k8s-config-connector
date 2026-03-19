@@ -249,8 +249,12 @@ func (a *BigtableAuthorizedViewAdapter) Update(ctx context.Context, updateOp *di
 		}
 	}
 
+	rowPrefixes := resource.GetSubsetView().RowPrefixes
+	if rowPrefixes == nil {
+		rowPrefixes = [][]byte{[]byte("")}
+	}
 	subsetView := &gcp.SubsetViewInfo{
-		RowPrefixes:   resource.GetSubsetView().RowPrefixes,
+		RowPrefixes:   rowPrefixes,
 		FamilySubsets: familySubset,
 	}
 
